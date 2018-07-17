@@ -1,0 +1,652 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 10.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     24033,        644]
+NotebookOptionsPosition[     22395,        616]
+NotebookOutlinePosition[     22749,        632]
+CellTagsIndexPosition[     22706,        629]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"ClearAll", "[", "\"\<Global`*\>\"", "]"}], ";"}]], "Input",
+ CellChangeTimes->{{3.617530464889297*^9, 3.617530468469748*^9}, 
+   3.617532717830595*^9},ExpressionUUID->"7d754157-16a6-4dca-8b4a-\
+4907e333a06f"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"For", "[", 
+   RowBox[{
+    RowBox[{"i", "=", "1"}], ",", 
+    RowBox[{"i", "<", "3"}], ",", 
+    RowBox[{"i", "++"}], ",", 
+    RowBox[{"Quiet", "[", 
+     RowBox[{"InstallJava", "[", "]"}], "]"}]}], "]"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{"Needs", "[", "\"\<JLink`\>\"", "]"}]}], "Input",
+ CellChangeTimes->{{3.617530490090077*^9, 3.617530490654924*^9}, {
+  3.6175311037507467`*^9, 
+  3.617531104425167*^9}},ExpressionUUID->"afbadb88-88ac-4bc2-9bff-\
+fa007b178329"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"LoadJavaClass", "[", "\"\<java.util.Arrays\>\"", "]"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"packet", "=", 
+   RowBox[{"JavaNew", "[", 
+    RowBox[{"\"\<java.net.DatagramPacket\>\"", ",", 
+     RowBox[{"JavaNew", "[", 
+      RowBox[{"\"\<[B\>\"", ",", "1024"}], "]"}], ",", "1024"}], "]"}]}], 
+  ";"}], "\n", 
+ RowBox[{
+  RowBox[{"socket", "=", 
+   RowBox[{"JavaNew", "[", 
+    RowBox[{"\"\<java.net.DatagramSocket\>\"", ",", "10552"}], "]"}]}], 
+  ";"}], "\n", 
+ RowBox[{
+  RowBox[{"socket", "@", 
+   RowBox[{"setSoTimeout", "[", "10", "]"}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"listen", "[", "]"}], ":=", 
+   RowBox[{"If", "[", 
+    RowBox[{
+     RowBox[{"$Failed", "=!=", 
+      RowBox[{"Quiet", "[", 
+       RowBox[{
+        RowBox[{"socket", "@", 
+         RowBox[{"receive", "[", "packet", "]"}]}], ",", 
+        RowBox[{"Java", "::", "excptn"}]}], "]"}]}], ",", 
+     RowBox[{"record", "=", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"JavaNew", "[", 
+         RowBox[{"\"\<java.lang.String\>\"", ",", 
+          RowBox[{"java`util`Arrays`copyOfRange", "@@", 
+           RowBox[{"packet", "/@", 
+            RowBox[{"{", 
+             RowBox[{
+              RowBox[{"getData", "[", "]"}], ",", 
+              RowBox[{"getOffset", "[", "]"}], ",", 
+              RowBox[{"getLength", "[", "]"}]}], "}"}]}]}]}], "]"}], "@", 
+        RowBox[{"toString", "[", "]"}]}], "//", "Sow"}]}]}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]"}], "Input",
+ CellChangeTimes->{{3.6175288743863373`*^9, 3.617528921570285*^9}, {
+   3.617528963948413*^9, 3.617528971957144*^9}, {3.617529095373852*^9, 
+   3.6175291288580513`*^9}, {3.617530462510919*^9, 3.617530500039028*^9}, {
+   3.617530563962319*^9, 3.6175305733446503`*^9}, {3.617531101349148*^9, 
+   3.617531111065116*^9}, 3.617531220149743*^9, 
+   3.6175340161723003`*^9},ExpressionUUID->"5dac4044-0290-4a44-a815-\
+b843106e2cef"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"results", "=", 
+    RowBox[{"{", "}"}]}], ";", 
+   RowBox[{"RunScheduledTask", "[", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"AppendTo", "[", 
+       RowBox[{"results", ",", 
+        RowBox[{"Quiet", "[", 
+         RowBox[{
+          RowBox[{"Reap", "[", 
+           RowBox[{"listen", "[", "]"}], "]"}], "[", 
+          RowBox[{"[", 
+           RowBox[{"2", ",", "1"}], "]"}], "]"}], "]"}]}], "]"}], ";", 
+      RowBox[{"If", "[", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"Length", "[", "results", "]"}], ">", "1200"}], ",", 
+        RowBox[{"Drop", "[", 
+         RowBox[{"results", ",", "150"}], "]"}]}], "]"}]}], ",", "0.01"}], 
+    "]"}], ";"}], "\[IndentingNewLine]"}]], "Input",
+ CellChangeTimes->{{3.617534017919615*^9, 3.617534023539049*^9}, {
+  3.61753726090872*^9, 3.6175372609612303`*^9}, {3.617537427637883*^9, 
+  3.617537428178122*^9}},ExpressionUUID->"db4e82aa-8f4a-4162-a9c4-\
+dc59e78ac085"],
+
+Cell[BoxData[
+ RowBox[{"stream", ":=", 
+  RowBox[{"Refresh", "[", 
+   RowBox[{
+    RowBox[{
+     RowBox[{
+      RowBox[{"ToExpression", "[", 
+       RowBox[{"StringSplit", "[", 
+        RowBox[{
+         RowBox[{"#", "[", 
+          RowBox[{"[", "1", "]"}], "]"}], ",", "\"\<,\>\""}], "]"}], "]"}], 
+      "&"}], " ", "/@", " ", 
+     RowBox[{"Select", "[", 
+      RowBox[{
+       RowBox[{"results", "[", 
+        RowBox[{"[", 
+         RowBox[{
+          RowBox[{"-", "1000"}], ";;"}], "]"}], "]"}], ",", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"Head", "[", "#", "]"}], "\[Equal]", "List"}], "&"}]}], 
+      "]"}]}], ",", 
+    RowBox[{"UpdateInterval", "\[Rule]", " ", "0.01"}]}], "]"}]}]], "Input",
+ CellChangeTimes->{{3.617534024838605*^9, 3.617534027969893*^9}, {
+  3.617534258905589*^9, 
+  3.617534259419758*^9}},ExpressionUUID->"a70426bf-5818-44a4-9b42-\
+83a69b5af378"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", "Compass", "*)"}], "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"While", "[", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"Length", "[", "results", "]"}], "<", "1000"}], ",", 
+      RowBox[{"Pause", "[", "2", "]"}]}], "]"}], ";", 
+    RowBox[{"Dynamic", "[", 
+     RowBox[{
+      RowBox[{"AngularGauge", "[", 
+       RowBox[{
+        RowBox[{"Refresh", "[", 
+         RowBox[{
+          RowBox[{"stream", "[", 
+           RowBox[{"[", 
+            RowBox[{
+             RowBox[{"-", "1"}], ",", "30"}], "]"}], "]"}], ",", 
+          RowBox[{"UpdateInterval", "\[Rule]", " ", "0.01"}]}], "]"}], ",", 
+        RowBox[{"{", 
+         RowBox[{"360", ",", "0"}], "}"}], ",", 
+        RowBox[{"ScaleDivisions", "\[Rule]", "None"}], ",", 
+        RowBox[{"GaugeLabels", "\[Rule]", " ", 
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"Placed", "[", 
+            RowBox[{"\"\<N\>\"", ",", "Top"}], "]"}], ",", 
+           RowBox[{"Placed", "[", 
+            RowBox[{"\"\<S\>\"", ",", "Bottom"}], "]"}], ",", 
+           RowBox[{"Placed", "[", 
+            RowBox[{"\"\<E\>\"", ",", "Right"}], "]"}], ",", 
+           RowBox[{"Placed", "[", 
+            RowBox[{"\"\<W\>\"", ",", "Left"}], "]"}]}], "}"}]}], ",", 
+        RowBox[{"ScaleOrigin", "\[Rule]", 
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"5", 
+              RowBox[{"Pi", "/", "2"}]}], ",", 
+             RowBox[{"Pi", "/", "2"}]}], "}"}], ",", "1"}], "}"}]}], ",", 
+        RowBox[{"ScalePadding", "\[Rule]", "All"}], ",", 
+        RowBox[{"ImageSize", "\[Rule]", " ", "Large"}]}], "]"}], ",", 
+      RowBox[{"SynchronousUpdating", "\[Rule]", " ", "False"}]}], "]"}]}], 
+   "\n"}]}]], "Input",
+ CellFrame->{{0, 0}, {0, 3}},
+ CellChangeTimes->{{3.6175290344135027`*^9, 3.617529058891542*^9}, {
+  3.6175291565748787`*^9, 
+  3.6175291614116*^9}},ExpressionUUID->"d8cdf4a9-9fc9-482f-830f-66ba7abb8ea1"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", 
+   RowBox[{"Plot", " ", "Ascelerometers"}], "*)"}], "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{"While", "[", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"Length", "[", "results", "]"}], "<", "1000"}], ",", 
+     RowBox[{"Pause", "[", "2", "]"}]}], "]"}], ";", 
+   RowBox[{"Dynamic", "[", 
+    RowBox[{"Refresh", "[", 
+     RowBox[{
+      RowBox[{"ListLinePlot", "[", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"stream", "[", 
+           RowBox[{"[", 
+            RowBox[{"All", ",", "2"}], "]"}], "]"}], ",", 
+          RowBox[{"stream", "[", 
+           RowBox[{"[", 
+            RowBox[{"All", ",", "3"}], "]"}], "]"}], ",", 
+          RowBox[{"stream", "[", 
+           RowBox[{"[", 
+            RowBox[{"All", ",", "4"}], "]"}], "]"}]}], "}"}], ",", 
+        RowBox[{"PlotRange", "\[Rule]", "All"}]}], "]"}], ",", 
+      RowBox[{"UpdateInterval", "\[Rule]", " ", "0.1"}]}], "]"}], 
+    "]"}]}]}]], "Input",
+ CellFrame->{{0, 0}, {0, 3}},
+ CellChangeTimes->{{3.617529363904512*^9, 
+  3.6175293750088997`*^9}},ExpressionUUID->"42feca41-8bd3-4bfc-bc98-\
+cb0015d23777"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", 
+   RowBox[{"Plot", " ", "FFT", " ", "of", " ", "accelorometers"}], "*)"}], 
+  "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{"While", "[", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"Length", "[", "results", "]"}], "<", "1000"}], ",", 
+     RowBox[{"Pause", "[", "2", "]"}]}], "]"}], ";", 
+   RowBox[{"Dynamic", "[", 
+    RowBox[{"Refresh", "[", 
+     RowBox[{
+      RowBox[{"ListLinePlot", "[", 
+       RowBox[{
+        RowBox[{"Log", " ", "/@", " ", 
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"Abs", "[", 
+            RowBox[{"Fourier", "[", 
+             RowBox[{"Standardize", "[", 
+              RowBox[{"stream", "[", 
+               RowBox[{"[", 
+                RowBox[{"All", ",", "2"}], "]"}], "]"}], "]"}], "]"}], "]"}], 
+           ",", 
+           RowBox[{"Abs", "[", 
+            RowBox[{"Fourier", "[", 
+             RowBox[{"Standardize", "[", 
+              RowBox[{"stream", "[", 
+               RowBox[{"[", 
+                RowBox[{"All", ",", "3"}], "]"}], "]"}], "]"}], "]"}], "]"}], 
+           ",", 
+           RowBox[{"Abs", "[", 
+            RowBox[{"Fourier", "[", 
+             RowBox[{"Standardize", "[", 
+              RowBox[{"stream", "[", 
+               RowBox[{"[", 
+                RowBox[{"All", ",", "4"}], "]"}], "]"}], "]"}], "]"}], 
+            "]"}]}], "}"}]}], ",", 
+        RowBox[{"PlotRange", "\[Rule]", 
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"{", 
+            RowBox[{"0", ",", "200"}], "}"}], ",", 
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"-", "5"}], ",", "2.5"}], "}"}]}], "}"}]}], ",", 
+        RowBox[{"ImageSize", "\[Rule]", "Large"}]}], "]"}], ",", 
+      RowBox[{"UpdateInterval", "\[Rule]", " ", "0.1"}]}], "]"}], 
+    "]"}]}]}]], "Input",
+ CellFrame->{{0, 0}, {0, 3}},
+ CellChangeTimes->{{3.617529390509527*^9, 
+  3.617529411282444*^9}},ExpressionUUID->"2541c994-fd38-4dbc-9975-\
+05e14c31acd3"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", 
+   RowBox[{"Measurements", " ", "with", " ", "time", " ", "scale"}], "*)"}], 
+  "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"While", "[", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"Length", "[", "results", "]"}], "<", "1000"}], ",", 
+      RowBox[{"Pause", "[", "2", "]"}]}], "]"}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"starttime", "=", 
+     RowBox[{"IntegerPart", "[", 
+      RowBox[{"stream", "[", 
+       RowBox[{"[", 
+        RowBox[{"2", ",", "1"}], "]"}], "]"}], "]"}]}], ";"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{"Dynamic", "[", 
+    RowBox[{"Refresh", "[", 
+     RowBox[{
+      RowBox[{"ListLinePlot", "[", 
+       RowBox[{
+        RowBox[{"Select", "[", 
+         RowBox[{
+          RowBox[{"Transpose", "[", 
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"(", 
+              RowBox[{
+               RowBox[{"stream", "[", 
+                RowBox[{"[", 
+                 RowBox[{
+                  RowBox[{
+                   RowBox[{"-", "800"}], ";;"}], ",", "1"}], "]"}], "]"}], 
+               "-", "starttime"}], ")"}], ",", 
+             RowBox[{"stream", "[", 
+              RowBox[{"[", 
+               RowBox[{
+                RowBox[{
+                 RowBox[{"-", "800"}], ";;"}], ",", "2"}], "]"}], "]"}]}], 
+            "}"}], "]"}], ",", 
+          RowBox[{
+           RowBox[{
+            RowBox[{"#", "[", 
+             RowBox[{"[", "]"}], "]"}], ">", 
+            RowBox[{"#", "[", 
+             RowBox[{"[", "]"}], "]"}]}], "&"}]}], "]"}], ",", 
+        RowBox[{"PlotRange", "\[Rule]", "All"}], ",", 
+        RowBox[{"ImageSize", "\[Rule]", "Large"}]}], "]"}], ",", 
+      RowBox[{"UpdateInterval", "\[Rule]", " ", "0.01"}]}], "]"}], 
+    "]"}]}]}]], "Input",
+ CellFrame->{{0, 0}, {0, 3}},
+ CellChangeTimes->{{3.617529251940262*^9, 3.617529266838256*^9}, {
+  3.61753306916536*^9, 3.617533077982786*^9}, {3.61753327055891*^9, 
+  3.6175332796227427`*^9}, {3.617533656821477*^9, 3.617533656922534*^9}, {
+  3.617533854702792*^9, 3.6175338686810837`*^9}, {3.617534324134796*^9, 
+  3.617534375883877*^9}, {3.617536753518711*^9, 3.6175367593572693`*^9}, {
+  3.617536868060713*^9, 3.617536881366473*^9}, {3.617537621986149*^9, 
+  3.617537647622169*^9}, {3.617537683459282*^9, 
+  3.61753770276015*^9}},ExpressionUUID->"a014c0df-5aa9-411b-9b66-\
+be416dd38cf5"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", 
+   RowBox[{"Plot", " ", "all", " ", "magnetometers"}], "*)"}], 
+  "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{"While", "[", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"Length", "[", "results", "]"}], "<", "1000"}], ",", 
+     RowBox[{"Pause", "[", "2", "]"}]}], "]"}], ";", 
+   RowBox[{"Dynamic", "[", 
+    RowBox[{"Refresh", "[", 
+     RowBox[{
+      RowBox[{"ListLinePlot", "[", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"stream", "[", 
+           RowBox[{"[", 
+            RowBox[{"All", ",", "33"}], "]"}], "]"}], ",", 
+          RowBox[{"stream", "[", 
+           RowBox[{"[", 
+            RowBox[{"All", ",", "34"}], "]"}], "]"}], ",", 
+          RowBox[{"stream", "[", 
+           RowBox[{"[", 
+            RowBox[{"All", ",", "35"}], "]"}], "]"}]}], "}"}], ",", 
+        RowBox[{"PlotRange", "\[Rule]", "All"}], ",", 
+        RowBox[{"ImageSize", "\[Rule]", "Full"}]}], "]"}], ",", 
+      RowBox[{"UpdateInterval", "\[Rule]", " ", "0.1"}]}], "]"}], 
+    "]"}]}]}]], "Input",
+ CellFrame->{{0, 0}, {0, 3}},
+ CellChangeTimes->{{3.6175293078476048`*^9, 
+  3.6175293423155813`*^9}},ExpressionUUID->"7ef7ee6c-2e27-4776-b003-\
+febad37afe83"],
+
+Cell[BoxData[
+ RowBox[{"(*", 
+  RowBox[{"3", "d", " ", "Motion"}], "*)"}]], "Input",
+ CellFrame->{{0, 0}, {0, 3}},
+ CellChangeTimes->{{3.6175120642079277`*^9, 
+  3.617512072317623*^9}},ExpressionUUID->"2b39ae4d-57e9-454d-96aa-\
+73836e77f5ba"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"While", "[", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"Length", "[", "results", "]"}], "<", "1000"}], ",", 
+    RowBox[{"Pause", "[", "2", "]"}]}], "]"}], ";", 
+  RowBox[{"Dynamic", "[", 
+   RowBox[{"Refresh", "[", 
+    RowBox[{
+     RowBox[{"ListLinePlot", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"stream", "[", 
+          RowBox[{"[", 
+           RowBox[{"All", ",", "5"}], "]"}], "]"}], ",", 
+         RowBox[{"stream", "[", 
+          RowBox[{"[", 
+           RowBox[{"All", ",", "6"}], "]"}], "]"}], ",", 
+         RowBox[{"stream", "[", 
+          RowBox[{"[", 
+           RowBox[{"All", ",", "7"}], "]"}], "]"}]}], "}"}], ",", 
+       RowBox[{"PlotRange", "\[Rule]", "All"}]}], "]"}], ",", 
+     RowBox[{"UpdateInterval", "\[Rule]", " ", "0.1"}]}], "]"}], 
+   "]"}]}]], "Input",
+ CellChangeTimes->{{3.617512658572399*^9, 
+  3.61751267950659*^9}},ExpressionUUID->"0dd02a75-10f9-4238-8d4a-\
+91427c192105"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"While", "[", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"Length", "[", "results", "]"}], "<", "1000"}], ",", 
+    RowBox[{"Pause", "[", "2", "]"}]}], "]"}], ";", 
+  RowBox[{"Dynamic", "[", 
+   RowBox[{
+    RowBox[{"Graphics3D", "[", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"Black", ",", 
+        RowBox[{"Rotate", "[", 
+         RowBox[{
+          RowBox[{"Rotate", "[", 
+           RowBox[{
+            RowBox[{"Rotate", "[", 
+             RowBox[{
+              RowBox[{"Cuboid", "[", 
+               RowBox[{
+                RowBox[{"{", 
+                 RowBox[{
+                  RowBox[{"-", "2"}], ",", 
+                  RowBox[{"-", "1"}], ",", 
+                  RowBox[{"-", "0.2"}]}], "}"}], ",", 
+                RowBox[{"{", 
+                 RowBox[{"2", ",", "1", ",", "0.2"}], "}"}]}], "]"}], ",", 
+              RowBox[{"stream", "[", 
+               RowBox[{"[", 
+                RowBox[{
+                 RowBox[{"-", "1"}], ",", "7"}], "]"}], "]"}], ",", 
+              RowBox[{"{", 
+               RowBox[{"0", ",", "0", ",", "1"}], "}"}]}], "]"}], ",", 
+            RowBox[{
+             RowBox[{"-", "1"}], "*", 
+             RowBox[{"stream", "[", 
+              RowBox[{"[", 
+               RowBox[{
+                RowBox[{"-", "1"}], ",", "6"}], "]"}], "]"}]}], ",", 
+            RowBox[{"{", 
+             RowBox[{"0", ",", "1", ",", "0"}], "}"}]}], "]"}], ",", 
+          RowBox[{"stream", "[", 
+           RowBox[{"[", 
+            RowBox[{
+             RowBox[{"-", "1"}], ",", "5"}], "]"}], "]"}], ",", 
+          RowBox[{"{", 
+           RowBox[{"1", ",", "0", ",", "0"}], "}"}]}], "]"}]}], "}"}], ",", 
+      RowBox[{"PlotRange", "\[Rule]", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"-", "3"}], ",", "3"}], "}"}], ",", 
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"-", "3"}], ",", "3"}], "}"}], ",", 
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"-", "3"}], ",", "3"}], "}"}]}], "}"}]}], ",", 
+      RowBox[{"Boxed", "\[Rule]", " ", "True"}]}], "]"}], ",", 
+    RowBox[{"UpdateInterval", "\[Rule]", " ", "0.1"}], ",", 
+    RowBox[{"SynchronousUpdating", "\[Rule]", "False"}]}], "]"}]}]], "Input",
+ CellChangeTimes->{{3.6175120751324797`*^9, 3.617512105203163*^9}, {
+   3.617512153601778*^9, 3.617512317799652*^9}, {3.617512630242941*^9, 
+   3.617512633822237*^9}, {3.617512820935185*^9, 3.61751291892408*^9}, {
+   3.617513016772731*^9, 3.617513028018849*^9}, {3.6175131126392803`*^9, 
+   3.61751312760233*^9}, {3.617513189832004*^9, 3.6175132074262333`*^9}, {
+   3.6175133611789227`*^9, 3.617513362107153*^9}, {3.617513604787816*^9, 
+   3.617513606147777*^9}, {3.6175159127039137`*^9, 3.6175159255647984`*^9}, 
+   3.617516060212627*^9},ExpressionUUID->"a0c3c653-3755-4ae8-8f77-\
+8b6d1cf16758"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", 
+   RowBox[{"GUI", " ", "all", " ", "sensors"}], "*)"}], "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"sensororder", "=", 
+     RowBox[{"{", 
+      RowBox[{
+      "\"\<Timestamp\>\"", ",", "\"\<Accel_X\>\"", ",", "\"\<Accel_Y\>\"", 
+       ",", "\"\<Accel_Z\>\"", ",", "\"\<Roll\>\"", ",", "\"\<Pitch\>\"", 
+       ",", "\"\<Yaw\>\"", ",", "\"\<Quat.X\>\"", ",", "\"\<Quat.Y\>\"", ",", 
+       "\"\<Quat.Z\>\"", ",", "\"\<Quat.W\>\"", ",", "\"\<RM11\>\"", ",", 
+       "\"\<RM12\>\"", ",", "\"\<RM13\>\"", ",", "\"\<RM21\>\"", ",", 
+       "\"\<RM22\>\"", ",", "\"\<RM23\>\"", ",", "\"\<RM31\>\"", ",", 
+       "\"\<RM32\>\"", ",", "\"\<RM33\>\"", ",", "\"\<GravAcc_X\>\"", ",", 
+       "\"\<GravAcc_Y\>\"", ",", "\"\<GravAcc_Z\>\"", ",", 
+       "\"\<UserAcc_X\>\"", ",", "\"\<UserAcc_Y\>\"", ",", 
+       "\"\<UserAcc_Z\>\"", ",", "\"\<RotRate_X\>\"", ",", 
+       "\"\<RotRate_Y\>\"", ",", "\"\<RotRate_Z\>\"", ",", 
+       "\"\<MagHeading\>\"", ",", "\"\<TrueHeading\>\"", ",", 
+       "\"\<HeadingAccuracy\>\"", ",", "\"\<MagX\>\"", ",", "\"\<MagY\>\"", 
+       ",", "\"\<MagZ\>\"", ",", "\"\<Lat\>\"", ",", "\"\<Long\>\"", ",", 
+       "\"\<LocAccuracy\>\"", ",", "\"\<Course\>\"", ",", "\"\<Speed\>\"", 
+       ",", "\"\<Altitude\>\"", ",", "\"\<Proximity\>\""}], "}"}]}], ";"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"While", "[", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"Length", "[", "results", "]"}], "<", "1000"}], ",", 
+      RowBox[{"Pause", "[", "2", "]"}]}], "]"}], ";", 
+    RowBox[{"Manipulate", "[", 
+     RowBox[{
+      RowBox[{"Dynamic", "[", 
+       RowBox[{"Refresh", "[", 
+        RowBox[{
+         RowBox[{"ListLinePlot", "[", 
+          RowBox[{
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"stream", "[", 
+              RowBox[{"[", 
+               RowBox[{"All", ",", 
+                RowBox[{
+                 RowBox[{"Position", "[", 
+                  RowBox[{"sensororder", ",", "a"}], "]"}], "[", 
+                 RowBox[{"[", 
+                  RowBox[{"1", ",", "1"}], "]"}], "]"}]}], "]"}], "]"}], ",", 
+             
+             RowBox[{"stream", "[", 
+              RowBox[{"[", 
+               RowBox[{"All", ",", 
+                RowBox[{
+                 RowBox[{"Position", "[", 
+                  RowBox[{"sensororder", ",", "b"}], "]"}], "[", 
+                 RowBox[{"[", 
+                  RowBox[{"1", ",", "1"}], "]"}], "]"}]}], "]"}], "]"}], ",", 
+             
+             RowBox[{"stream", "[", 
+              RowBox[{"[", 
+               RowBox[{"All", ",", 
+                RowBox[{
+                 RowBox[{"Position", "[", 
+                  RowBox[{"sensororder", ",", "c"}], "]"}], "[", 
+                 RowBox[{"[", 
+                  RowBox[{"1", ",", "1"}], "]"}], "]"}]}], "]"}], "]"}]}], 
+            "}"}], ",", 
+           RowBox[{"PlotRange", "\[Rule]", "All"}], ",", 
+           RowBox[{"ImageSize", "\[Rule]", "Full"}]}], "]"}], ",", 
+         RowBox[{"UpdateInterval", "\[Rule]", " ", "0.01"}]}], "]"}], "]"}], 
+      ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{"a", ",", "\"\<Accel_X\>\""}], "}"}], ",", "sensororder"}], 
+       "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{"b", ",", "\"\<Accel_Y\>\""}], "}"}], ",", "sensororder"}], 
+       "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{"c", ",", "\"\<Accel_Z\>\""}], "}"}], ",", "sensororder"}], 
+       "}"}], ",", 
+      RowBox[{"ControlPlacement", "\[Rule]", "Left"}], ",", 
+      RowBox[{"SynchronousUpdating", "\[Rule]", "False"}]}], 
+     "]"}]}]}]}]], "Input",
+ CellFrame->{{0, 0}, {0, 3}},
+ CellChangeTimes->{{3.617529061111265*^9, 3.617529073459219*^9}, {
+  3.617529136381076*^9, 
+  3.617529145301696*^9}},ExpressionUUID->"b7032756-ff0f-4a2b-b009-\
+06f02327479a"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", 
+   RowBox[{
+   "Remove", " ", "Scheduled", " ", "Tasks", " ", "and", " ", "close", " ", 
+    "link"}], "*)"}], "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{"RemoveScheduledTask", "[", 
+    RowBox[{"ScheduledTasks", "[", "]"}], "]"}], ";", 
+   RowBox[{"socket", "@", 
+    RowBox[{"close", "[", "]"}]}], ";"}]}]], "Input",
+ CellFrame->{{0, 0}, {0, 3}},
+ CellChangeTimes->{{3.6175289991492157`*^9, 3.61752900729432*^9}, {
+  3.617529163841915*^9, 
+  3.6175291837766*^9}},ExpressionUUID->"04c8ee7f-763f-4def-a10c-0ac03eedd1fd"]
+},
+WindowSize->{808, 874},
+WindowMargins->{{Automatic, 5}, {Automatic, 383}},
+FrontEndVersion->"11.3 for Mac OS X x86 (32-bit, 64-bit Kernel) (March 7, \
+2018)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 243, 5, 30, "Input",ExpressionUUID->"7d754157-16a6-4dca-8b4a-4907e333a06f"],
+Cell[804, 27, 513, 14, 52, "Input",ExpressionUUID->"afbadb88-88ac-4bc2-9bff-fa007b178329"],
+Cell[1320, 43, 1939, 50, 199, "Input",ExpressionUUID->"5dac4044-0290-4a44-a815-b843106e2cef"],
+Cell[3262, 95, 964, 26, 94, "Input",ExpressionUUID->"db4e82aa-8f4a-4162-a9c4-dc59e78ac085"],
+Cell[4229, 123, 886, 26, 73, "Input",ExpressionUUID->"a70426bf-5818-44a4-9b42-83a69b5af378"],
+Cell[5118, 151, 1987, 50, 189, "Input",ExpressionUUID->"d8cdf4a9-9fc9-482f-830f-66ba7abb8ea1"],
+Cell[7108, 203, 1142, 32, 105, "Input",ExpressionUUID->"42feca41-8bd3-4bfc-bc98-cb0015d23777"],
+Cell[8253, 237, 1958, 54, 210, "Input",ExpressionUUID->"2541c994-fd38-4dbc-9975-05e14c31acd3"],
+Cell[10214, 293, 2381, 62, 189, "Input",ExpressionUUID->"a014c0df-5aa9-411b-9b66-be416dd38cf5"],
+Cell[12598, 357, 1217, 34, 126, "Input",ExpressionUUID->"7ef7ee6c-2e27-4776-b003-febad37afe83"],
+Cell[13818, 393, 242, 6, 41, "Input",ExpressionUUID->"2b39ae4d-57e9-454d-96aa-73836e77f5ba"],
+Cell[14063, 401, 979, 28, 73, "Input",ExpressionUUID->"0dd02a75-10f9-4238-8d4a-91427c192105"],
+Cell[15045, 431, 2861, 71, 178, "Input",ExpressionUUID->"a0c3c653-3755-4ae8-8f77-8b6d1cf16758"],
+Cell[17909, 504, 3915, 94, 336, "Input",ExpressionUUID->"b7032756-ff0f-4a2b-b009-06f02327479a"],
+Cell[21827, 600, 564, 14, 84, "Input",ExpressionUUID->"04c8ee7f-763f-4def-a10c-0ac03eedd1fd"]
+}
+]
+*)
+

@@ -1,0 +1,222 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='WolframDesktop 11.3' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       161,          7]
+NotebookDataLength[      8786,        214]
+NotebookOptionsPosition[      7123,        175]
+NotebookOutlinePosition[      7511,        192]
+CellTagsIndexPosition[      7468,        189]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["Using ML Models for Accelerometer-based Gesture Recognition", "Title",
+ CellChangeTimes->{{3.740341478412978*^9, 3.740341479070559*^9}, {
+  3.740346140316699*^9, 3.74034614206505*^9}, {3.740346343437614*^9, 
+  3.74034636931408*^9}},ExpressionUUID->"35ba8c36-f49b-470a-b7aa-\
+911f064cfcc6"],
+
+Cell[CellGroupData[{
+
+Cell["Euan Ong", "Chapter",
+ CellChangeTimes->{{3.740346453347849*^9, 
+  3.740346454226015*^9}},ExpressionUUID->"94a337ae-41d8-424a-ada8-\
+f6805d5bf7db"],
+
+Cell[CellGroupData[{
+
+Cell["Abstract", "Section",
+ CellChangeTimes->{{3.740346463098589*^9, 
+  3.740346464449101*^9}},ExpressionUUID->"8e83560f-38a3-4ca3-96b5-\
+61843cb4e292"],
+
+Cell["\<\
+As technology advances, we are constantly seeking new, more intuitive methods \
+of interfacing with our devices and the digital world; one such method is \
+gesture recognition. Although touchless human interface devices (kinetic user \
+interfaces) exist and are in development, the cost and configuration required \
+for these sometimes makes them impractical, particularly for mobile \
+applications. A simpler method would be to use devices the user already has \
+on their person - such as a phone or a smartwatch - to detect basic gestures, \
+taking advantage of the wide array of sensors included in such devices. In an \
+attempt to assess the feasibility of such a method, we investigate methods of \
+asynchronous communication between a mobile device and the Wolfram Language, \
+and implement a gesture recognition system based around an accelerometer \
+sensor, using a machine learning model to classify a few simple gestures from \
+mobile accelerometer data.\
+\>", "Text",
+ CellChangeTimes->{{3.740346467569265*^9, 3.7403464972244453`*^9}, {
+  3.740346573443009*^9, 3.740346665020817*^9}, {3.740346699645421*^9, 
+  3.74034677432386*^9}, {3.740347920988142*^9, 
+  3.740347936886057*^9}},ExpressionUUID->"50909527-7e48-4e6c-a7cb-\
+deff641818dc"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["General Description", "Section",
+ CellChangeTimes->{{3.740346908944265*^9, 3.740346912992887*^9}, {
+   3.740346983609573*^9, 3.740346985270862*^9}, {3.740347192064055*^9, 
+   3.7403471929142313`*^9}, 3.740347695418044*^9, {3.740347809254744*^9, 
+   3.740347809451723*^9}, {3.740347868527853*^9, 3.740347870383079*^9}, {
+   3.7403479437308197`*^9, 3.740347946047085*^9}, {3.740347983612814*^9, 
+   3.7403479877530003`*^9}},ExpressionUUID->"bb898672-77f4-4b94-b226-\
+0fe68d170c50"],
+
+Cell["\<\
+To implement such a system, we must
+\t1. devise a suitable means for \
+\>", "Text",
+ CellChangeTimes->{{3.74034781216859*^9, 3.740347813445354*^9}, {
+  3.7403479914441023`*^9, 
+  3.7403481343277893`*^9}},ExpressionUUID->"ab3b8638-9372-472c-b640-\
+53fbcd5c1561"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Investigating Methods of Asynchronous Communication", "Section",
+ CellChangeTimes->{{3.740348178930444*^9, 
+  3.740348237530796*^9}},ExpressionUUID->"a9aa817c-1fd6-42f2-9769-\
+1519a919ae38"],
+
+Cell["\<\
+To implement an accelerometer-based gesture recognition system, we must \
+devise a suitable means for a mobile device to transmit accelerometer data to \
+a computer running the Wolfram Language (WL). On a high level, the WL has \
+baked-in support for a variety of devices - specifically the Raspberry Pi, \
+Vernier Go!Link compatible sensors, Arduino microcontrollers, webcams and \
+devices using the RS-232 or RS-422 serial protocol \
+(http://reference.wolfram.com/language/guide/UsingConnectedDevices.html); \
+unfortunately, there is no easy way to access sensor data from Android or iOS \
+mobile devices.
+
+On a low level, the WL natively supports TCP and ZMQ socket functionality, as \
+well as receipt and transmission of HTTP requests and Pub-Sub channel \
+communication. We investigate the feasibility of both methods for \
+transmission of accelerometer data:\
+\>", "Text",
+ CellChangeTimes->{{3.740348249379436*^9, 3.740348300439583*^9}, {
+  3.740348348684516*^9, 3.7403483791901608`*^9}, {3.740348437015976*^9, 
+  3.740348633066881*^9}, {3.7403489239082203`*^9, 3.7403489471097813`*^9}, {
+  3.7403490824468327`*^9, 
+  3.740349130426834*^9}},ExpressionUUID->"fd23ae96-d50b-4743-93be-\
+fc436db7b78e"],
+
+Cell[CellGroupData[{
+
+Cell["Socket Transmission", "Subsection",
+ CellChangeTimes->{{3.740349134643935*^9, 
+  3.740349141111753*^9}},ExpressionUUID->"eb2acab3-1821-42e6-8482-\
+a8b6657e992e"],
+
+Cell["\<\
+Although a number of tutorials are available for transmission of sensor data \
+from an iOS device to the WL \
+(http://community.wolfram.com/groups/-/m/t/344278), no such resources are as \
+yet available for Android devices - there is some support for exporting \
+Android sensor data to the Wolfram Data Drop \
+(http://community.wolfram.com/groups/-/m/t/461190), however this has \
+extremely high latency (data upload is every 2 minutes) and so is not \
+suitable for gesture recognition. 
+
+On the Google Play Store, there exist a number of Android apps which can \
+transmit live accelerometer data to a computer over UDP sockets - for \
+instance, \[OpenCurlyDoubleQuote]Sensorstream IMU+GPS\[CloseCurlyDoubleQuote] \
+(https://play.google.com/store/apps/details?id=de.lorenz_fenster.\
+sensorstreamgps); unfortunately, the WL does not natively support UDP. The \
+WL, however, is integrated with Java through JLink, \
+\>", "Text",
+ CellChangeTimes->{{3.740349146279355*^9, 3.740349160407566*^9}, {
+  3.740349339599942*^9, 3.740349443269547*^9}, {3.740349624315443*^9, 
+  3.740349775053768*^9}, {3.7403498432135468`*^9, 3.740349881431684*^9}, {
+  3.7403500344874773`*^9, 3.740350044635562*^9}, {3.740350261098564*^9, 
+  3.74035039159338*^9}, {3.740350437265477*^9, 3.740350522525188*^9}, {
+  3.74035069104399*^9, 
+  3.7403507014125977`*^9}},ExpressionUUID->"7b4d6d2c-aea8-4c63-a78e-\
+cdcf8732b9ec"],
+
+Cell["Initialise JLink:", "CodeText",
+ CellChangeTimes->{{3.740350557724456*^9, 3.740350558154163*^9}, {
+  3.740350629042923*^9, 
+  3.740350646104232*^9}},ExpressionUUID->"d6421687-0793-4e00-ab6f-\
+36e98a2e30da"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"QuitJava", "[", "]"}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{"Needs", "[", "\"\<JLink`\>\"", "]"}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{"InstallJava", "[", "]"}], ";"}]}], "Code",
+ CellChangeTimes->{{3.7403505560788183`*^9, 3.7403505560850563`*^9}, {
+  3.7403506681197853`*^9, 
+  3.74035067356061*^9}},ExpressionUUID->"4491b68c-df6d-48c0-850f-\
+0e661a35e236"],
+
+Cell["", "Text",
+ CellChangeTimes->{
+  3.7403505536581573`*^9},ExpressionUUID->"70bce997-9c65-4ba1-a109-\
+16406b922528"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{1025, 851},
+WindowMargins->{{490, Automatic}, {262, Automatic}},
+Magnification:>1.25 Inherited,
+FrontEndVersion->"11.3 for Mac OS X x86 (32-bit, 64-bit Kernel) (March 7, \
+2018)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[583, 22, 295, 4, 200, "Title",ExpressionUUID->"35ba8c36-f49b-470a-b7aa-911f064cfcc6"],
+Cell[CellGroupData[{
+Cell[903, 30, 153, 3, 86, "Chapter",ExpressionUUID->"94a337ae-41d8-424a-ada8-f6805d5bf7db"],
+Cell[CellGroupData[{
+Cell[1081, 37, 153, 3, 84, "Section",ExpressionUUID->"8e83560f-38a3-4ca3-96b5-61843cb4e292"],
+Cell[1237, 42, 1259, 19, 274, "Text",ExpressionUUID->"50909527-7e48-4e6c-a7cb-deff641818dc"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[2533, 66, 485, 7, 84, "Section",ExpressionUUID->"bb898672-77f4-4b94-b226-0fe68d170c50"],
+Cell[3021, 75, 271, 7, 73, "Text",ExpressionUUID->"ab3b8638-9372-472c-b640-53fbcd5c1561"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[3329, 87, 196, 3, 84, "Section",ExpressionUUID->"a9aa817c-1fd6-42f2-9769-1519a919ae38"],
+Cell[3528, 92, 1215, 21, 303, "Text",ExpressionUUID->"fd23ae96-d50b-4743-93be-fc436db7b78e"],
+Cell[CellGroupData[{
+Cell[4768, 117, 167, 3, 67, "Subsection",ExpressionUUID->"eb2acab3-1821-42e6-8482-a8b6657e992e"],
+Cell[4938, 122, 1403, 24, 303, "Text",ExpressionUUID->"7b4d6d2c-aea8-4c63-a78e-cdcf8732b9ec"],
+Cell[6344, 148, 212, 4, 48, "CodeText",ExpressionUUID->"d6421687-0793-4e00-ab6f-36e98a2e30da"],
+Cell[6559, 154, 389, 10, 114, "Code",ExpressionUUID->"4491b68c-df6d-48c0-850f-0e661a35e236"],
+Cell[6951, 166, 120, 3, 44, "Text",ExpressionUUID->"70bce997-9c65-4ba1-a109-16406b922528"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+

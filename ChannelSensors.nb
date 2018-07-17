@@ -1,0 +1,785 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='WolframDesktop 11.3' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       161,          7]
+NotebookDataLength[     38789,        777]
+NotebookOptionsPosition[     36974,        737]
+NotebookOutlinePosition[     37331,        753]
+CellTagsIndexPosition[     37288,        750]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData[
+ RowBox[{"8", "===", "True"}]], "Input",
+ CellChangeTimes->{{3.740310684749406*^9, 3.740310696479417*^9}},
+ CellLabel->
+  "In[311]:=",ExpressionUUID->"f24311da-9855-4fd7-8bcb-fab3a172b0ec"],
+
+Cell[BoxData["False"], "Output",
+ CellChangeTimes->{{3.740310686585471*^9, 3.7403106969228573`*^9}},
+ CellLabel->
+  "Out[311]=",ExpressionUUID->"eb6c4fd7-af03-4f05-a56e-6dc67ba1f2af"]
+}, Open  ]],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"a", "=", "\"\<\>\""}], ";"}]], "Input",
+ CellChangeTimes->{{3.740319212387369*^9, 3.740319219422233*^9}},
+ CellLabel->"In[1]:=",ExpressionUUID->"5112a7db-1181-4a3d-bb76-102e2248d8ff"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"ProcessData", "[", "data_", "]"}], ":=", 
+   RowBox[{"a", "=", "data"}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.740319206676333*^9, 3.740319225955934*^9}},
+ CellLabel->"In[2]:=",ExpressionUUID->"fb3c943f-dcf4-4fc0-acf1-f4f47df72a8a"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Dynamic", "[", 
+  RowBox[{
+   RowBox[{"ToExpression", "@", 
+    RowBox[{"Values", "[", 
+     RowBox[{"Rest", "[", "a", "]"}], "]"}]}], "//", "Norm"}], "]"}]], "Input",\
+
+ CellChangeTimes->{{3.740319245812365*^9, 3.740319247109169*^9}, {
+  3.740321470328404*^9, 3.740321500234638*^9}},
+ CellLabel->"In[3]:=",ExpressionUUID->"8ad55ef1-9cc5-40ab-9386-40417f7e60ee"],
+
+Cell[BoxData[
+ DynamicBox[ToBoxes[
+   Norm[
+    ToExpression[
+     Values[
+      Rest[$CellContext`a]]]], StandardForm],
+  ImageSizeCache->{62., {1., 9.}}]], "Output",
+ CellChangeTimes->{
+  3.7403213585191917`*^9, {3.740321488161693*^9, 3.7403215014557323`*^9}, 
+   3.7403215677143707`*^9},
+ CellLabel->"Out[3]=",ExpressionUUID->"bc61a62c-a37c-4737-a0f3-6b615fb7d0fd"]
+}, Open  ]],
+
+Cell[BoxData[
+ RowBox[{"ClearAll", "[", "listener", "]"}]], "Input",
+ CellChangeTimes->{{3.7403212826510353`*^9, 3.740321285521164*^9}},
+ CellLabel->
+  "In[1231]:=",ExpressionUUID->"08c91cef-5849-4962-8b59-4ecf043ece77"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"listener", "=", 
+  RowBox[{"ChannelListen", "[", 
+   RowBox[{"\"\<Sensors2\>\"", ",", 
+    RowBox[{
+     RowBox[{"ProcessData", "[", "#Message", "]"}], "&"}], ",", 
+    RowBox[{"Permissions", "\[Rule]", "\"\<Public\>\""}]}], "]"}]}]], "Input",\
+
+ CellChangeTimes->{3.740321306301684*^9},
+ CellLabel->"In[4]:=",ExpressionUUID->"0a63376c-d949-4b95-bb11-d50711f24aa2"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{
+   TagBox["ChannelListener",
+    "SummaryHead"], "[", 
+   DynamicModuleBox[{Typeset`open$$ = True, Typeset`embedState$$ = "Ready"}, 
+    TemplateBox[{PaneSelectorBox[{False -> GridBox[{{
+            PaneBox[
+             ButtonBox[
+              DynamicBox[
+               FEPrivate`FrontEndResource[
+               "FEBitmaps", "SquarePlusIconMedium"], 
+               ImageSizeCache -> {12., {0., 12.}}], Appearance -> None, 
+              ButtonFunction :> (Typeset`open$$ = True), Evaluator -> 
+              Automatic, Method -> "Preemptive"], 
+             Alignment -> {Center, Center}, ImageSize -> 
+             Dynamic[{
+               Automatic, 
+                3.5 (CurrentValue["FontCapHeight"]/AbsoluteCurrentValue[
+                 Magnification])}]], 
+            GraphicsBox[{
+              Thickness[0.04], 
+              FaceForm[{
+                RGBColor[0.537, 0.537, 0.537], 
+                Opacity[1.]}], 
+              
+              FilledCurveBox[{{{0, 2, 0}, {0, 1, 0}, {0, 1, 0}, {0, 1, 0}, {0,
+                 1, 0}, {0, 1, 0}, {0, 1, 0}, {0, 1, 0}, {0, 1, 0}, {0, 1, 
+                0}, {0, 1, 0}, {0, 1, 0}, {0, 1, 0}, {0, 1, 0}, {0, 1, 0}, {0,
+                 1, 0}, {0, 1, 0}, {0, 1, 0}, {0, 1, 0}}, {{0, 2, 0}, {0, 1, 
+                0}, {0, 1, 0}}, {{0, 2, 0}, {0, 1, 0}, {0, 1, 0}}, {{0, 2, 
+                0}, {0, 1, 0}, {0, 1, 0}}, {{0, 2, 0}, {0, 1, 0}, {0, 1, 
+                0}}, {{0, 2, 0}, {0, 1, 0}, {0, 1, 0}}, {{0, 2, 0}, {0, 1, 
+                0}, {0, 1, 0}}, {{0, 2, 0}, {0, 1, 0}, {0, 1, 0}}, {{0, 2, 
+                0}, {0, 1, 0}, {0, 1, 0}}, {{0, 2, 0}, {0, 1, 0}, {0, 1, 
+                0}}, {{0, 2, 0}, {0, 1, 0}, {0, 1, 0}}, {{0, 2, 0}, {0, 1, 
+                0}, {0, 1, 0}}, {{0, 2, 0}, {0, 1, 0}, {0, 1, 0}}, {{0, 2, 
+                0}, {0, 1, 0}, {0, 1, 0}}, {{0, 2, 0}, {0, 1, 0}, {0, 1, 
+                0}}, {{0, 2, 0}, {0, 1, 0}, {0, 1, 0}}, {{0, 2, 0}, {0, 1, 
+                0}, {0, 1, 0}}, {{0, 2, 0}, {0, 1, 0}, {0, 1, 0}}, {{0, 2, 
+                0}, {0, 1, 0}, {0, 1, 0}}, {{0, 2, 0}, {0, 1, 0}, {0, 1, 
+                0}}, {{0, 2, 0}, {0, 1, 0}, {0, 1, 0}}, {{0, 2, 0}, {0, 1, 
+                0}, {0, 1, 0}, {0, 1, 0}, {0, 1, 0}, {0, 1, 0}, {0, 1, 0}, {0,
+                 1, 0}}, {{0, 2, 0}, {0, 1, 0}, {0, 1, 0}, {0, 1, 0}, {0, 1, 
+                0}, {0, 1, 0}, {0, 1, 0}, {0, 1, 0}}}, {CompressedData["
+1:eJxTTMoPSmViYGAQAWIQLeYR8EdCWMchu6JqqY6zvoP/H4ni659UHJZVHte0
+MjJ0SKq/aVu5Q9UhXSkHqELLwcHuxc01VjIOkV933ur6q+HgeD7t6nMvZYd1
+zM97NHSV4fJRG/e/mbdHyuHK8yztb9tVHTh+LkjfnCXucChlVUII0PwLV8Pe
+6O/+b9+54eHLqUI6Dn9mckjPi+NxCDXQWinMYODQwDfHeNGW4/bzbHSuzPpm
+CJffPW0Cf1WbqcOHmNyj/zb9tzcCaVA2dXh38rDT2kxxh2DWxZOsPlo4cKho
+1PXslHIACt4rjDKDuw8mv1EvbzHjHw0HoCttdFRMHYCeSf2+RMuBv8pstV27
+qcMD3QkLfhgaOqR2JMfeAdp/7wH35JVO+nD3TTpd77H/r5EDAGj4jZA=
+                
+                "], {{14.846299999999998`, 15.034199999999998`}, {16.0003, 
+                17.0092}, {17.1543, 15.034199999999998`}, {16.0003, 
+                13.560199999999998`}}, {{13.265299999999998`, 
+                14.252199999999998`}, {12.577299999999997`, 
+                15.180199999999997`}, {13.928299999999998`, 
+                14.587199999999998`}, {14.546299999999999`, 
+                13.796199999999999`}}, {{18.0733, 14.586199999999998`}, {
+                19.423299999999998`, 15.179199999999998`}, {18.7353, 
+                14.252199999999998`}, {17.455299999999998`, 
+                13.797199999999998`}}, {{19.5403, 13.661199999999997`}, {
+                20.2673, 14.640199999999998`}, {20.1143, 
+                13.108199999999998`}, {19.502299999999998`, 12.2412}}, {{
+                11.887299999999998`, 13.111199999999998`}, {
+                11.734299999999998`, 14.640199999999998`}, {
+                12.458299999999998`, 13.661199999999997`}, {12.4973, 
+                12.243199999999998`}}, {{16.499299999999998`, 
+                12.396199999999999`}, {18.5263, 13.1162}, {
+                18.467299999999998`, 10.963199999999999`}, {
+                16.499299999999998`, 10.300199999999997`}}, {{
+                13.533299999999999`, 10.963199999999999`}, {
+                13.474299999999998`, 13.1162}, {15.499299999999998`, 
+                12.396199999999999`}, {15.499299999999998`, 
+                10.300199999999997`}}, {{8.9423, 11.882199999999997`}, {
+                11.184299999999999`, 12.370199999999997`}, {
+                12.259299999999998`, 10.843199999999998`}, {
+                10.462299999999999`, 10.176199999999998`}}, {{19.7393, 
+                10.843199999999998`}, {20.8153, 12.369199999999998`}, {
+                23.058299999999996`, 11.881199999999998`}, {21.5383, 
+                10.175199999999997`}}, {{16.8083, 9.350199999999997}, {
+                18.778299999999998`, 10.013199999999998`}, {20.0873, 
+                8.312199999999997}, {18.021299999999997`, 
+                7.704199999999998}}, {{11.913299999999998`, 
+                8.312199999999997}, {13.222299999999999`, 
+                10.013199999999998`}, {15.191299999999998`, 
+                9.350199999999997}, {13.978299999999999`, 
+                7.704199999999998}}, {{10.607299999999999`, 
+                9.164199999999997}, {11.585299999999998`, 9.5262}, {
+                10.768299999999998`, 8.464199999999998}, {9.6403, 
+                8.079199999999998}}, {{21.2323, 8.463199999999999}, {
+                20.414299999999997`, 9.525199999999998}, {21.393299999999996`,
+                 9.163199999999998}, {22.3603, 8.077199999999998}}, {{
+                14.786299999999999`, 7.1141999999999985`}, {16.0003, 
+                8.761199999999999}, {17.214299999999998`, 
+                7.1141999999999985`}, {16.0003, 5.342199999999998}}, {{
+                19.5373, 7.107199999999999}, {20.917299999999997`, 
+                7.515199999999998}, {22.1423, 7.095199999999998}, {
+                20.621299999999998`, 6.764199999999997}}, {{9.858299999999998,
+                 7.096199999999998}, {11.083299999999998`, 
+                7.514199999999999}, {12.462299999999999`, 
+                7.108199999999998}, {11.377299999999998`, 
+                6.764199999999997}}, {{11.866299999999999`, 
+                5.871199999999998}, {13.689299999999998`, 
+                6.447199999999999}, {13.735299999999999`, 
+                4.5051999999999985`}, {11.6383, 3.5851999999999986`}}, {{
+                18.263299999999997`, 4.5051999999999985`}, {18.3113, 
+                6.447199999999999}, {20.1333, 5.870199999999999}, {
+                20.361299999999996`, 3.584199999999999}}, {{
+                14.740299999999998`, 4.323199999999998}, {14.713299999999998`,
+                 5.452199999999998}, {15.499299999999998`, 
+                4.303199999999999}, {15.499299999999998`, 
+                3.023199999999999}}, {{16.499299999999998`, 
+                4.303199999999999}, {17.286299999999997`, 
+                5.451199999999998}, {17.2593, 4.323199999999998}, {
+                16.499299999999998`, 3.0241999999999987`}}, {{
+                0.7933000000000003, 14.500199999999998`}, {
+                3.6462999999999983`, 11.647199999999998`}, {4.353299999999999,
+                 12.353199999999998`}, {2.7072999999999983`, 
+                14.000199999999998`}, {7.000299999999998, 
+                14.000199999999998`}, {7.000299999999998, 
+                15.000199999999998`}, {2.7072999999999983`, 
+                15.000199999999998`}, {4.353299999999999, 
+                16.646199999999997`}, {3.6462999999999983`, 17.3542}}, {{
+                3.6462999999999983`, 6.646199999999997}, {5.2933, 
+                5.0001999999999995`}, {1.0002999999999993`, 
+                5.0001999999999995`}, {1.0002999999999993`, 
+                3.9991999999999983`}, {5.2933, 3.9991999999999983`}, {
+                3.6462999999999983`, 2.3531999999999993`}, {4.353299999999999,
+                 1.6461999999999968`}, {7.207299999999998, 
+                4.5001999999999995`}, {4.353299999999999, 
+                7.354199999999999}}}]}, AspectRatio -> Automatic, 
+             ImageSize -> {Automatic, 
+               Dynamic[
+               3.5 (CurrentValue["FontCapHeight"]/AbsoluteCurrentValue[
+                 Magnification])]}, PlotRange -> {{0., 25.}, {0., 19.}}], 
+            GridBox[{{
+               RowBox[{
+                 TagBox["\"Channel: \"", "SummaryItemAnnotation"], 
+                 "\[InvisibleSpace]", 
+                 TagBox[
+                 "\"euan.l.y.ong@gmail.com:Sensors2\"", "SummaryItem"]}], 
+               RowBox[{
+                 TagBox["\"ID: \"", "SummaryItemAnnotation"], 
+                 "\[InvisibleSpace]", 
+                 TagBox["\"aF85lK\"", "SummaryItem"]}]}, {
+               TagBox[
+                DynamicModuleBox[{ChannelFramework`Private`lights$$ = {
+                    Style[
+                    Graphics[{{
+                    RGBColor[0.88, 1, 0.88], 
+                    Disk[{0, 0}]}, {
+                    RGBColor[0, 0.85, 0], 
+                    Circle[{0, 0}]}}, PlotRange -> {-2.2, 1.1}, ImageSize -> 
+                    9, ImageMargins -> {{3, 3}, {2, 0}}, 
+                    BaseStyle -> {CacheGraphics -> False}], Selectable -> 
+                    False], 
+                    Style[
+                    Graphics[{{
+                    RGBColor[1, 1, 0], 
+                    Disk[{0, 0}]}, {
+                    RGBColor[0.8, 0.8, 0], 
+                    Circle[{0, 0}]}}, PlotRange -> {-2.2, 1.1}, ImageSize -> 
+                    9, ImageMargins -> {{3, 3}, {2, 0}}, 
+                    BaseStyle -> {CacheGraphics -> False}], Selectable -> 
+                    False], 
+                    Style[
+                    Graphics[{{
+                    RGBColor[1, 1, 0], 
+                    Disk[{0, 0}]}, {
+                    RGBColor[0.8, 0.8, 0], 
+                    Circle[{0, 0}]}}, PlotRange -> {-2.2, 1.1}, ImageSize -> 
+                    9, ImageMargins -> {{3, 3}, {2, 0}}, 
+                    BaseStyle -> {CacheGraphics -> False}], Selectable -> 
+                    False]}, ChannelFramework`Private`opacities$$ = {
+                    Opacity[1], 
+                    Opacity[0.2], 
+                    Opacity[0.2]}, 
+                  ChannelFramework`Private`status$$ = {
+                   "Active", "Stopped", "Inactive"}, 
+                  ChannelFramework`Private`hlen$$ = DirectedInfinity[1], 
+                  ChannelFramework`Private`d$$ = "aF85lK", 
+                  ChannelFramework`Private`stat$$ = 1, 
+                  ChannelFramework`Private`ind$$ = 1, 
+                  ChannelFramework`Private`cnt$$ = 204, 
+                  ChannelFramework`Private`tot$$}, 
+                 TemplateBox[{
+                   RowBox[{
+                    TagBox["\"Status: \"", "SummaryItemAnnotation"], 
+                    "\[InvisibleSpace]", 
+                    TagBox[
+                    DynamicBox[
+                    ToBoxes[
+                    ChannelFramework`Private`stat$$ = 
+                    ChannelFramework`Private`listenerStatus[
+                    ChannelFramework`Private`d$$]; 
+                    ChannelFramework`Private`ind$$ = If[
+                    IntegerQ[ChannelFramework`Private`stat$$], 
+                    ChannelFramework`Private`stat$$, 3]; Style[
+                    Row[{
+                    Part[
+                    ChannelFramework`Private`lights$$, 
+                    ChannelFramework`Private`ind$$], 
+                    Part[
+                    ChannelFramework`Private`status$$, 
+                    ChannelFramework`Private`ind$$]}], 
+                    Part[ChannelFramework`Private`opacities$$, 1]], 
+                    StandardForm]], "SummaryItem"]}], 
+                   TemplateBox[{20}, "Spacer1"], 
+                   RowBox[{
+                    TagBox["\"Message count: \"", "SummaryItemAnnotation"], 
+                    "\[InvisibleSpace]", 
+                    TagBox[
+                    TemplateBox[{
+                    DynamicBox[
+                    ToBoxes[
+                    ChannelListener["aF85lK"]; 
+                    ChannelFramework`Private`cnt$$ = 
+                    Function[{
+                    ChannelFramework`Private`idx, 
+                    ChannelFramework`Private`prop}, 
+                    If[
+                    Or[DownValues[ChannelFramework`Private`msgCount] === {}, 
+                    Not[
+                    IntegerQ[
+                    Quiet[
+                    ChannelFramework`Private`msgCount[
+                    ChannelFramework`Private`idx, 
+                    ChannelFramework`Private`prop]]]]], 0, 
+                    ChannelFramework`Private`msgCount[
+                    ChannelFramework`Private`idx, 
+                    ChannelFramework`Private`prop]]][
+                    ChannelFramework`Private`d$$, "AvailableMessageCount"], 
+                    StandardForm]], "\"\""}, "RowDefault"], "SummaryItem"]}]},
+                   "RowDefault"], DynamicModuleValues :> {}, 
+                 Initialization :> (If[Context["ChannelObject"] =!= "System`", 
+                    Get["ChannelFramework`"]]; 
+                  Clear[ChannelFramework`Private`cnt$$])], "SummaryItem"], 
+               ""}}, AutoDelete -> False, 
+             BaseStyle -> {
+              ShowStringCharacters -> False, NumberMarks -> False, 
+               PrintPrecision -> 3, ShowSyntaxStyles -> False}, 
+             GridBoxAlignment -> {
+              "Columns" -> {{Left}}, "Rows" -> {{Automatic}}}, 
+             GridBoxItemSize -> {
+              "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}, 
+             GridBoxSpacings -> {
+              "Columns" -> {{2}}, "Rows" -> {{Automatic}}}]}}, AutoDelete -> 
+          False, BaselinePosition -> {1, 1}, 
+          GridBoxAlignment -> {"Rows" -> {{Top}}}, 
+          GridBoxItemSize -> {
+           "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}], True -> 
+        GridBox[{{
+            PaneBox[
+             ButtonBox[
+              DynamicBox[
+               FEPrivate`FrontEndResource[
+               "FEBitmaps", "SquareMinusIconMedium"], 
+               ImageSizeCache -> {12., {0., 12.}}], Appearance -> None, 
+              ButtonFunction :> (Typeset`open$$ = False), Evaluator -> 
+              Automatic, Method -> "Preemptive"], 
+             Alignment -> {Center, Center}, ImageSize -> 
+             Dynamic[{
+               Automatic, 
+                3.5 (CurrentValue["FontCapHeight"]/AbsoluteCurrentValue[
+                 Magnification])}]], 
+            GraphicsBox[{
+              Thickness[0.04], 
+              FaceForm[{
+                RGBColor[0.537, 0.537, 0.537], 
+                Opacity[1.]}], 
+              
+              FilledCurveBox[{{{0, 2, 0}, {0, 1, 0}, {0, 1, 0}, {0, 1, 0}, {0,
+                 1, 0}, {0, 1, 0}, {0, 1, 0}, {0, 1, 0}, {0, 1, 0}, {0, 1, 
+                0}, {0, 1, 0}, {0, 1, 0}, {0, 1, 0}, {0, 1, 0}, {0, 1, 0}, {0,
+                 1, 0}, {0, 1, 0}, {0, 1, 0}, {0, 1, 0}}, {{0, 2, 0}, {0, 1, 
+                0}, {0, 1, 0}}, {{0, 2, 0}, {0, 1, 0}, {0, 1, 0}}, {{0, 2, 
+                0}, {0, 1, 0}, {0, 1, 0}}, {{0, 2, 0}, {0, 1, 0}, {0, 1, 
+                0}}, {{0, 2, 0}, {0, 1, 0}, {0, 1, 0}}, {{0, 2, 0}, {0, 1, 
+                0}, {0, 1, 0}}, {{0, 2, 0}, {0, 1, 0}, {0, 1, 0}}, {{0, 2, 
+                0}, {0, 1, 0}, {0, 1, 0}}, {{0, 2, 0}, {0, 1, 0}, {0, 1, 
+                0}}, {{0, 2, 0}, {0, 1, 0}, {0, 1, 0}}, {{0, 2, 0}, {0, 1, 
+                0}, {0, 1, 0}}, {{0, 2, 0}, {0, 1, 0}, {0, 1, 0}}, {{0, 2, 
+                0}, {0, 1, 0}, {0, 1, 0}}, {{0, 2, 0}, {0, 1, 0}, {0, 1, 
+                0}}, {{0, 2, 0}, {0, 1, 0}, {0, 1, 0}}, {{0, 2, 0}, {0, 1, 
+                0}, {0, 1, 0}}, {{0, 2, 0}, {0, 1, 0}, {0, 1, 0}}, {{0, 2, 
+                0}, {0, 1, 0}, {0, 1, 0}}, {{0, 2, 0}, {0, 1, 0}, {0, 1, 
+                0}}, {{0, 2, 0}, {0, 1, 0}, {0, 1, 0}}, {{0, 2, 0}, {0, 1, 
+                0}, {0, 1, 0}, {0, 1, 0}, {0, 1, 0}, {0, 1, 0}, {0, 1, 0}, {0,
+                 1, 0}}, {{0, 2, 0}, {0, 1, 0}, {0, 1, 0}, {0, 1, 0}, {0, 1, 
+                0}, {0, 1, 0}, {0, 1, 0}, {0, 1, 0}}}, {CompressedData["
+1:eJxTTMoPSmViYGAQAWIQLeYR8EdCWMchu6JqqY6zvoP/H4ni659UHJZVHte0
+MjJ0SKq/aVu5Q9UhXSkHqELLwcHuxc01VjIOkV933ur6q+HgeD7t6nMvZYd1
+zM97NHSV4fJRG/e/mbdHyuHK8yztb9tVHTh+LkjfnCXucChlVUII0PwLV8Pe
+6O/+b9+54eHLqUI6Dn9mckjPi+NxCDXQWinMYODQwDfHeNGW4/bzbHSuzPpm
+CJffPW0Cf1WbqcOHmNyj/zb9tzcCaVA2dXh38rDT2kxxh2DWxZOsPlo4cKho
+1PXslHIACt4rjDKDuw8mv1EvbzHjHw0HoCttdFRMHYCeSf2+RMuBv8pstV27
+qcMD3QkLfhgaOqR2JMfeAdp/7wH35JVO+nD3TTpd77H/r5EDAGj4jZA=
+                
+                "], {{14.846299999999998`, 15.034199999999998`}, {16.0003, 
+                17.0092}, {17.1543, 15.034199999999998`}, {16.0003, 
+                13.560199999999998`}}, {{13.265299999999998`, 
+                14.252199999999998`}, {12.577299999999997`, 
+                15.180199999999997`}, {13.928299999999998`, 
+                14.587199999999998`}, {14.546299999999999`, 
+                13.796199999999999`}}, {{18.0733, 14.586199999999998`}, {
+                19.423299999999998`, 15.179199999999998`}, {18.7353, 
+                14.252199999999998`}, {17.455299999999998`, 
+                13.797199999999998`}}, {{19.5403, 13.661199999999997`}, {
+                20.2673, 14.640199999999998`}, {20.1143, 
+                13.108199999999998`}, {19.502299999999998`, 12.2412}}, {{
+                11.887299999999998`, 13.111199999999998`}, {
+                11.734299999999998`, 14.640199999999998`}, {
+                12.458299999999998`, 13.661199999999997`}, {12.4973, 
+                12.243199999999998`}}, {{16.499299999999998`, 
+                12.396199999999999`}, {18.5263, 13.1162}, {
+                18.467299999999998`, 10.963199999999999`}, {
+                16.499299999999998`, 10.300199999999997`}}, {{
+                13.533299999999999`, 10.963199999999999`}, {
+                13.474299999999998`, 13.1162}, {15.499299999999998`, 
+                12.396199999999999`}, {15.499299999999998`, 
+                10.300199999999997`}}, {{8.9423, 11.882199999999997`}, {
+                11.184299999999999`, 12.370199999999997`}, {
+                12.259299999999998`, 10.843199999999998`}, {
+                10.462299999999999`, 10.176199999999998`}}, {{19.7393, 
+                10.843199999999998`}, {20.8153, 12.369199999999998`}, {
+                23.058299999999996`, 11.881199999999998`}, {21.5383, 
+                10.175199999999997`}}, {{16.8083, 9.350199999999997}, {
+                18.778299999999998`, 10.013199999999998`}, {20.0873, 
+                8.312199999999997}, {18.021299999999997`, 
+                7.704199999999998}}, {{11.913299999999998`, 
+                8.312199999999997}, {13.222299999999999`, 
+                10.013199999999998`}, {15.191299999999998`, 
+                9.350199999999997}, {13.978299999999999`, 
+                7.704199999999998}}, {{10.607299999999999`, 
+                9.164199999999997}, {11.585299999999998`, 9.5262}, {
+                10.768299999999998`, 8.464199999999998}, {9.6403, 
+                8.079199999999998}}, {{21.2323, 8.463199999999999}, {
+                20.414299999999997`, 9.525199999999998}, {21.393299999999996`,
+                 9.163199999999998}, {22.3603, 8.077199999999998}}, {{
+                14.786299999999999`, 7.1141999999999985`}, {16.0003, 
+                8.761199999999999}, {17.214299999999998`, 
+                7.1141999999999985`}, {16.0003, 5.342199999999998}}, {{
+                19.5373, 7.107199999999999}, {20.917299999999997`, 
+                7.515199999999998}, {22.1423, 7.095199999999998}, {
+                20.621299999999998`, 6.764199999999997}}, {{9.858299999999998,
+                 7.096199999999998}, {11.083299999999998`, 
+                7.514199999999999}, {12.462299999999999`, 
+                7.108199999999998}, {11.377299999999998`, 
+                6.764199999999997}}, {{11.866299999999999`, 
+                5.871199999999998}, {13.689299999999998`, 
+                6.447199999999999}, {13.735299999999999`, 
+                4.5051999999999985`}, {11.6383, 3.5851999999999986`}}, {{
+                18.263299999999997`, 4.5051999999999985`}, {18.3113, 
+                6.447199999999999}, {20.1333, 5.870199999999999}, {
+                20.361299999999996`, 3.584199999999999}}, {{
+                14.740299999999998`, 4.323199999999998}, {14.713299999999998`,
+                 5.452199999999998}, {15.499299999999998`, 
+                4.303199999999999}, {15.499299999999998`, 
+                3.023199999999999}}, {{16.499299999999998`, 
+                4.303199999999999}, {17.286299999999997`, 
+                5.451199999999998}, {17.2593, 4.323199999999998}, {
+                16.499299999999998`, 3.0241999999999987`}}, {{
+                0.7933000000000003, 14.500199999999998`}, {
+                3.6462999999999983`, 11.647199999999998`}, {4.353299999999999,
+                 12.353199999999998`}, {2.7072999999999983`, 
+                14.000199999999998`}, {7.000299999999998, 
+                14.000199999999998`}, {7.000299999999998, 
+                15.000199999999998`}, {2.7072999999999983`, 
+                15.000199999999998`}, {4.353299999999999, 
+                16.646199999999997`}, {3.6462999999999983`, 17.3542}}, {{
+                3.6462999999999983`, 6.646199999999997}, {5.2933, 
+                5.0001999999999995`}, {1.0002999999999993`, 
+                5.0001999999999995`}, {1.0002999999999993`, 
+                3.9991999999999983`}, {5.2933, 3.9991999999999983`}, {
+                3.6462999999999983`, 2.3531999999999993`}, {4.353299999999999,
+                 1.6461999999999968`}, {7.207299999999998, 
+                4.5001999999999995`}, {4.353299999999999, 
+                7.354199999999999}}}]}, AspectRatio -> Automatic, 
+             ImageSize -> {Automatic, 
+               Dynamic[
+               3.5 (CurrentValue["FontCapHeight"]/AbsoluteCurrentValue[
+                 Magnification])]}, PlotRange -> {{0., 25.}, {0., 19.}}], 
+            GridBox[{{
+               RowBox[{
+                 TagBox["\"Channel: \"", "SummaryItemAnnotation"], 
+                 "\[InvisibleSpace]", 
+                 TagBox[
+                 "\"euan.l.y.ong@gmail.com:Sensors2\"", "SummaryItem"]}], 
+               RowBox[{
+                 TagBox["\"ID: \"", "SummaryItemAnnotation"], 
+                 "\[InvisibleSpace]", 
+                 TagBox["\"aF85lK\"", "SummaryItem"]}]}, {
+               TagBox[
+                DynamicModuleBox[{ChannelFramework`Private`lights$$ = {
+                    Style[
+                    Graphics[{{
+                    RGBColor[0.88, 1, 0.88], 
+                    Disk[{0, 0}]}, {
+                    RGBColor[0, 0.85, 0], 
+                    Circle[{0, 0}]}}, PlotRange -> {-2.2, 1.1}, ImageSize -> 
+                    9, ImageMargins -> {{3, 3}, {2, 0}}, 
+                    BaseStyle -> {CacheGraphics -> False}], Selectable -> 
+                    False], 
+                    Style[
+                    Graphics[{{
+                    RGBColor[1, 1, 0], 
+                    Disk[{0, 0}]}, {
+                    RGBColor[0.8, 0.8, 0], 
+                    Circle[{0, 0}]}}, PlotRange -> {-2.2, 1.1}, ImageSize -> 
+                    9, ImageMargins -> {{3, 3}, {2, 0}}, 
+                    BaseStyle -> {CacheGraphics -> False}], Selectable -> 
+                    False], 
+                    Style[
+                    Graphics[{{
+                    RGBColor[1, 1, 0], 
+                    Disk[{0, 0}]}, {
+                    RGBColor[0.8, 0.8, 0], 
+                    Circle[{0, 0}]}}, PlotRange -> {-2.2, 1.1}, ImageSize -> 
+                    9, ImageMargins -> {{3, 3}, {2, 0}}, 
+                    BaseStyle -> {CacheGraphics -> False}], Selectable -> 
+                    False]}, ChannelFramework`Private`opacities$$ = {
+                    Opacity[1], 
+                    Opacity[0.2], 
+                    Opacity[0.2]}, 
+                  ChannelFramework`Private`status$$ = {
+                   "Active", "Stopped", "Inactive"}, 
+                  ChannelFramework`Private`hlen$$ = DirectedInfinity[1], 
+                  ChannelFramework`Private`d$$ = "aF85lK", 
+                  ChannelFramework`Private`stat$$ = 1, 
+                  ChannelFramework`Private`ind$$ = 1, 
+                  ChannelFramework`Private`cnt$$ = 4638, 
+                  ChannelFramework`Private`tot$$}, 
+                 TemplateBox[{
+                   RowBox[{
+                    TagBox["\"Status: \"", "SummaryItemAnnotation"], 
+                    "\[InvisibleSpace]", 
+                    TagBox[
+                    DynamicBox[
+                    ToBoxes[
+                    ChannelFramework`Private`stat$$ = 
+                    ChannelFramework`Private`listenerStatus[
+                    ChannelFramework`Private`d$$]; 
+                    ChannelFramework`Private`ind$$ = If[
+                    IntegerQ[ChannelFramework`Private`stat$$], 
+                    ChannelFramework`Private`stat$$, 3]; Style[
+                    Row[{
+                    Part[
+                    ChannelFramework`Private`lights$$, 
+                    ChannelFramework`Private`ind$$], 
+                    Part[
+                    ChannelFramework`Private`status$$, 
+                    ChannelFramework`Private`ind$$]}], 
+                    Part[ChannelFramework`Private`opacities$$, 1]], 
+                    StandardForm]], "SummaryItem"]}], 
+                   TemplateBox[{20}, "Spacer1"], 
+                   RowBox[{
+                    TagBox["\"Message count: \"", "SummaryItemAnnotation"], 
+                    "\[InvisibleSpace]", 
+                    TagBox[
+                    TemplateBox[{
+                    DynamicBox[
+                    ToBoxes[
+                    ChannelListener["aF85lK"]; 
+                    ChannelFramework`Private`cnt$$ = 
+                    Function[{
+                    ChannelFramework`Private`idx, 
+                    ChannelFramework`Private`prop}, 
+                    If[
+                    Or[DownValues[ChannelFramework`Private`msgCount] === {}, 
+                    Not[
+                    IntegerQ[
+                    Quiet[
+                    ChannelFramework`Private`msgCount[
+                    ChannelFramework`Private`idx, 
+                    ChannelFramework`Private`prop]]]]], 0, 
+                    ChannelFramework`Private`msgCount[
+                    ChannelFramework`Private`idx, 
+                    ChannelFramework`Private`prop]]][
+                    ChannelFramework`Private`d$$, "AvailableMessageCount"], 
+                    StandardForm]], "\"\""}, "RowDefault"], "SummaryItem"]}]},
+                   "RowDefault"], DynamicModuleValues :> {}, 
+                 Initialization :> (If[Context["ChannelObject"] =!= "System`", 
+                    Get["ChannelFramework`"]]; 
+                  Clear[ChannelFramework`Private`cnt$$])], "SummaryItem"], 
+               ""}, {
+               TagBox[
+                
+                DynamicModuleBox[{
+                 ChannelFramework`Private`as$$ = 
+                  Association[
+                   "URLRendering" -> Automatic, ChannelBase -> 
+                    "https://channelbroker.wolframcloud.com:443", Permissions -> 
+                    "Public", NotificationFunction -> Inherited, 
+                    MetaInformation -> {}, Initialization -> Automatic, 
+                    HandlerFunctions -> Automatic, ChannelPreSendFunction -> 
+                    Automatic, ChannelBrokerAction -> Automatic, "Scheme" -> 
+                    "https", "Domain" -> "channelbroker.wolframcloud.com", 
+                    "Port" -> 443, "Path" -> 
+                    "/users/euan.l.y.ong@gmail.com/Sensors2", "URL" -> 
+                    "https://channelbroker.wolframcloud.com:443/users/euan.l.\
+y.ong@gmail.com/Sensors2", "DisplayURL" -> 
+                    "https://channelbroker.wolframcloud.com/users/euan.l.y.\
+ong@gmail.com/Sensors2"], ChannelFramework`Private`owner$$ = 
+                  "euan.l.y.ong@gmail.com", ChannelFramework`Private`d$$ = 
+                  "aF85lK", ChannelFramework`Private`bin$$ = None, 
+                  ChannelFramework`Private`cnt$$ = 4638}, 
+                 DynamicBox[
+                  ToBoxes[
+                  ChannelFramework`Private`cnt$$ = 
+                    Function[{
+                    ChannelFramework`Private`idx, 
+                    ChannelFramework`Private`prop}, 
+                    If[
+                    Or[DownValues[ChannelFramework`Private`msgCount] === {}, 
+                    Not[
+                    IntegerQ[
+                    Quiet[
+                    ChannelFramework`Private`msgCount[
+                    ChannelFramework`Private`idx, 
+                    ChannelFramework`Private`prop]]]]], 0, 
+                    ChannelFramework`Private`msgCount[
+                    ChannelFramework`Private`idx, 
+                    ChannelFramework`Private`prop]]][
+                    ChannelFramework`Private`d$$, "AvailableMessageCount"]; 
+                   Column[{
+                    Apply[Sequence, 
+                    If[ChannelFramework`Private`cnt$$ > 0, 
+                    ChannelFramework`Private`cloudDynamic[{
+                    BoxForm`SummaryItem[{"Latest message: ", 
+                    ChannelFramework`Private`shorten[
+                    ChannelListener["aF85lK"]["Message"]]}], 
+                    BoxForm`SummaryItem[{"Message from: ", 
+                    ChannelListener["aF85lK"]["RequesterWolframID"]}], 
+                    BoxForm`SummaryItem[{"Requester address: ", 
+                    ChannelListener["aF85lK"]["RequesterAddress"]}], 
+                    BoxForm`SummaryItem[{"Timestamp: ", 
+                    DateString[
+                    ChannelListener["aF85lK"]["Timestamp"]]}]}], {}]], 
+                    If[ChannelFramework`Private`owner$$ === "", 
+                    Apply[Sequence, {}], 
+                    
+                    BoxForm`SummaryItem[{
+                    "Channel owner: ", ChannelFramework`Private`owner$$}]], 
+                    If[ChannelFramework`Private`bin$$ === None, 
+                    Apply[Sequence, {}], 
+                    
+                    BoxForm`SummaryItem[{
+                    "Databin ID: ", ChannelFramework`Private`bin$$}]], 
+                    BoxForm`SummaryItem[{"Channel base: ", 
+                    ChannelFramework`Private`urlStringAuto[
+                    ChannelFramework`Private`as$$[ChannelBase]]}]}], 
+                   StandardForm], 
+                  ImageSizeCache -> {364., {37.4169921875, 42.5830078125}}], 
+                 DynamicModuleValues :> {}, Initialization :> 
+                 Clear[ChannelFramework`Private`cnt$$]], "SummaryItem"], ""}},
+              AutoDelete -> False, 
+             BaseStyle -> {
+              ShowStringCharacters -> False, NumberMarks -> False, 
+               PrintPrecision -> 3, ShowSyntaxStyles -> False}, 
+             GridBoxAlignment -> {
+              "Columns" -> {{Left}}, "Rows" -> {{Automatic}}}, 
+             GridBoxItemSize -> {
+              "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}, 
+             GridBoxSpacings -> {
+              "Columns" -> {{2}}, "Rows" -> {{Automatic}}}]}}, AutoDelete -> 
+          False, BaselinePosition -> {1, 1}, 
+          GridBoxAlignment -> {"Rows" -> {{Top}}}, 
+          GridBoxItemSize -> {
+           "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}]}, 
+       Dynamic[Typeset`open$$], ImageSize -> Automatic]},
+     "SummaryPanel"],
+    DynamicModuleValues:>{}], "]"}],
+  ChannelListener["aF85lK"],
+  Editable->False,
+  SelectWithContents->True,
+  Selectable->False]], "Output",
+ CellChangeTimes->{{3.7403212881266127`*^9, 3.740321307506448*^9}, 
+   3.740321579626997*^9},
+ CellLabel->"Out[4]=",ExpressionUUID->"b8e62b49-afca-4c09-aac9-3fe449b1e5d3"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"RemoveChannelListener", "[", "listener", "]"}]], "Input",
+ CellChangeTimes->{{3.740321432283255*^9, 3.7403214529207067`*^9}},
+ CellLabel->
+  "In[1230]:=",ExpressionUUID->"826be5d4-dabe-47d2-908b-e32d4fed4b7f"],
+
+Cell[BoxData[
+ RowBox[{"ChannelListener", "[", "\<\"K5l1K8\"\>", "]"}]], "Output",
+ CellChangeTimes->{{3.7403214365103807`*^9, 3.74032145355652*^9}},
+ CellLabel->
+  "Out[1230]=",ExpressionUUID->"826701a8-9e17-45c6-bb46-0c0eb082c8ea"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Dynamic", "[", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"ListLinePlot", "[", 
+     RowBox[{"ToExpression", "/@", 
+      RowBox[{"Reverse", "[", 
+       RowBox[{"Take", "[", 
+        RowBox[{
+         RowBox[{"Reverse", "[", 
+          RowBox[{"#", "[", "\"\<Values\>\"", "]"}], "]"}], ",", 
+         RowBox[{"UpTo", "[", "100", "]"}]}], "]"}], "]"}]}], "]"}], "&"}], "/@", 
+   RowBox[{"listener", "[", "\"\<TimeSeries\>\"", "]"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.740321828231182*^9, 3.7403218416550703`*^9}, {
+  3.7403218888213043`*^9, 3.740321889223447*^9}, {3.740322974714716*^9, 
+  3.7403229797302*^9}},
+ CellLabel->"In[8]:=",ExpressionUUID->"e367408f-fed9-497b-8421-fe0a6c3feddd"],
+
+Cell[BoxData[
+ DynamicBox[ToBoxes[
+   Map[ListLinePlot[
+     Map[ToExpression, 
+      Reverse[
+       Take[
+        Reverse[
+         #["Values"]], 
+        UpTo[100]]]]]& , 
+    $CellContext`listener["TimeSeries"]], StandardForm],
+  ImageSizeCache->{470., {183., 55.}}]], "Output",
+ CellChangeTimes->{3.740321896466976*^9, 3.740322980850184*^9},
+ CellLabel->"Out[8]=",ExpressionUUID->"2836251c-0a8d-4afb-9e59-965324030e59"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData["$CloudCreditsAvailable"], "Input",
+ CellChangeTimes->{{3.7403231158279047`*^9, 3.7403231184915323`*^9}},
+ CellLabel->"In[9]:=",ExpressionUUID->"bf9b720b-a62d-4929-a31e-63c445dba4e8"],
+
+Cell[BoxData["39097"], "Output",
+ CellChangeTimes->{3.740323121360649*^9},
+ CellLabel->"Out[9]=",ExpressionUUID->"9a34ebde-6991-4f8a-8e69-45067be0c852"]
+}, Open  ]]
+},
+WindowSize->{808, 751},
+WindowMargins->{{206, Automatic}, {-220, Automatic}},
+FrontEndVersion->"11.3 for Mac OS X x86 (32-bit, 64-bit Kernel) (March 7, \
+2018)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[583, 22, 203, 4, 30, "Input",ExpressionUUID->"f24311da-9855-4fd7-8bcb-fab3a172b0ec"],
+Cell[789, 28, 183, 3, 34, "Output",ExpressionUUID->"eb6c4fd7-af03-4f05-a56e-6dc67ba1f2af"]
+}, Open  ]],
+Cell[987, 34, 218, 4, 30, "Input",ExpressionUUID->"5112a7db-1181-4a3d-bb76-102e2248d8ff"],
+Cell[1208, 40, 282, 6, 30, "Input",ExpressionUUID->"fb3c943f-dcf4-4fc0-acf1-f4f47df72a8a"],
+Cell[CellGroupData[{
+Cell[1515, 50, 386, 9, 30, "Input",ExpressionUUID->"8ad55ef1-9cc5-40ab-9386-40417f7e60ee"],
+Cell[1904, 61, 368, 10, 34, "Output",ExpressionUUID->"bc61a62c-a37c-4737-a0f3-6b615fb7d0fd"]
+}, Open  ]],
+Cell[2287, 74, 220, 4, 30, "Input",ExpressionUUID->"08c91cef-5849-4962-8b59-4ecf043ece77"],
+Cell[CellGroupData[{
+Cell[2532, 82, 389, 9, 30, "Input",ExpressionUUID->"0a63376c-d949-4b95-bb11-d50711f24aa2"],
+Cell[2924, 93, 31964, 580, 162, "Output",ExpressionUUID->"b8e62b49-afca-4c09-aac9-3fe449b1e5d3"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[34925, 678, 233, 4, 30, "Input",ExpressionUUID->"826be5d4-dabe-47d2-908b-e32d4fed4b7f"],
+Cell[35161, 684, 233, 4, 34, "Output",ExpressionUUID->"826701a8-9e17-45c6-bb46-0c0eb082c8ea"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[35431, 693, 712, 16, 52, "Input",ExpressionUUID->"e367408f-fed9-497b-8421-fe0a6c3feddd"],
+Cell[36146, 711, 424, 12, 257, "Output",ExpressionUUID->"2836251c-0a8d-4afb-9e59-965324030e59"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[36607, 728, 196, 2, 30, "Input",ExpressionUUID->"bf9b720b-a62d-4929-a31e-63c445dba4e8"],
+Cell[36806, 732, 152, 2, 34, "Output",ExpressionUUID->"9a34ebde-6991-4f8a-8e69-45067be0c852"]
+}, Open  ]]
+}
+]
+*)
+
